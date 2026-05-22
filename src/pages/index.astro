@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Hostile Work Environment Damages Calculator | hostileworkcalc.com';
-const description = 'Estimate potential damages for a hostile work environment claim under Title VII, ADA, ADEA, or state law. Free, informational.';
+const description = 'Estimate potential damages for a hostile work environment claim under Title VII, ADA, ADEA, or state law — compensatory and punitive caps, back pay, and constructive discharge. Free, informational.';
 ---
 <BaseLayout title={title} description={description}>
   <h1>Hostile Work Environment Damages Calculator</h1>
-  <p><em>Reviewed by Riley Chen (RC), Employment &amp; Civil Rights Practice Lead. Updated May 2026.</em></p>
-  <p>A hostile work environment exists when unwelcome conduct based on a protected characteristic (race, sex, religion, national origin, age, disability) is so severe or pervasive that it alters the terms and conditions of employment. The conduct must be both objectively and subjectively offensive. This calculator estimates potential recovery for hostile work environment claims.</p>
-  <h2>Run the estimate</h2>
+  <p><em>Reviewed by Dex Harmon (DH), Editor-in-Chief &mdash; Employment & Civil Rights Harassment Practice. Updated May 2026.</em></p>
+  <p>A hostile work environment exists when unwelcome conduct based on a protected characteristic — race, sex, religion, national origin, disability, age, or another protected category — is severe or pervasive enough to alter the terms and conditions of employment. Federal law prohibits this under Title VII, the ADA, the ADEA, and related statutes. This calculator estimates potential damages based on the severity of the conduct, your employer&rsquo;s size (which determines the Title VII damages cap), and whether the harassment resulted in constructive discharge. Actual awards are determined by courts — consult an employment attorney before making any decisions.</p>
+
+  <h2>Run the Estimate</h2>
   <form id="calc" novalidate>
     <label for="basis">Protected characteristic at issue</label>
     <select id="basis">
@@ -42,11 +43,45 @@ const description = 'Estimate potential damages for a hostile work environment c
     <button type="submit">Estimate damages</button>
   </form>
   <p id="result" aria-live="polite"></p>
-  <h2>How hostile work environment claims work</h2>
-  <p>Under Title VII, plaintiffs must show: (1) they belong to a protected class; (2) the harassment was unwelcome; (3) it was based on a protected characteristic; (4) it was severe or pervasive enough to alter working conditions; and (5) employer liability (the employer knew or should have known and failed to correct). Employer liability differs based on whether the harasser was a supervisor or co-worker.</p>
-  <p>Compensatory damages are capped by employer size. Punitive damages are available (within the same cap) when the employer acted with malice or reckless indifference. Back pay and front pay are uncapped.</p>
-  <h2>Where to learn more</h2>
-  <p>See <a href="/guides/how-hostile-work-environment-claims-work">how hostile work environment claims work</a>, <a href="/guides/types-of-workplace-harassment">types of workplace harassment</a>, <a href="/guides/what-to-do-after-workplace-harassment">what to do after workplace harassment</a>, and <a href="/guides/hostile-work-misconceptions">common misconceptions</a>.</p>
+
+  <h2>How Hostile Work Environment Damages Are Calculated</h2>
+  <p>Title VII, ADA, and ADEA hostile work environment damages each follow a specific statutory framework. Understanding how those frameworks work — what is capped, what is not, and why employer size matters — is essential to interpreting the calculator&rsquo;s output.</p>
+
+  <h3>The Title VII Damages Cap</h3>
+  <p>Under 42 U.S.C. &sect; 1981a(b)(3), the combined amount of compensatory and punitive damages in a Title VII or ADA discrimination case is capped by employer size. These caps apply to the non-economic component of the award — emotional distress, pain and suffering, and punitive damages. They do not apply to back pay or front pay, which are equitable remedies ordered separately by the court. The caps are:</p>
+  <ul>
+    <li>15&ndash;100 employees: $50,000</li>
+    <li>101&ndash;200 employees: $100,000</li>
+    <li>201&ndash;500 employees: $200,000</li>
+    <li>500+ employees: $300,000</li>
+  </ul>
+  <p>This means that in a case involving a $70,000/year employee who was constructively discharged, sued a large employer (500+ employees), and received the maximum Title VII award plus 12 months of back pay and one year of front pay, the total award could reach $650,000 ($300,000 cap + $70,000 back pay + $35,000 front pay + attorney fees). The cap is on the non-economic component only.</p>
+
+  <h3>Severity and the Severe-or-Pervasive Standard</h3>
+  <p>To meet the legal threshold for a hostile work environment claim under Title VII, the harassing conduct must be either severe (a single incident of extreme nature) or pervasive (a pattern of repeated incidents over time). Courts evaluate severity by looking at all the circumstances: the frequency of the discriminatory conduct, its severity, whether it is physically threatening or humiliating rather than merely offensive, and whether it unreasonably interfered with the employee&rsquo;s work performance. The calculator applies severity tiers (severe, pervasive, moderate) as a proxy for where in the damages range the case is likely to fall — higher severity translates to a higher proportion of the cap.</p>
+
+  <h3>Constructive Discharge and Economic Damages</h3>
+  <p>Constructive discharge occurs when an employer makes working conditions so objectively intolerable that a reasonable employee would feel compelled to resign. When constructive discharge is established, the plaintiff is entitled to back pay and front pay as if they had been terminated — the resignation is treated as an involuntary discharge for purposes of economic damages. Back pay runs from the date of resignation to the judgment date. Front pay is discretionary and compensates for anticipated future losses when reinstatement is impractical. The calculator adds these economic damages components on top of the capped non-economic award for constructive discharge cases.</p>
+
+  <h2>The Employer Liability Framework</h2>
+  <p>Whether an employer can be held liable for harassment depends on who did the harassing and whether a tangible employment action resulted. The framework, established in <em>Faragher v. Boca Raton</em> and <em>Burlington Industries v. Ellerth</em> (both 1998), determines whether the employer can assert an affirmative defense:</p>
+  <ul>
+    <li><strong>Supervisor harassment + tangible employment action:</strong> Employer strictly liable. No affirmative defense available.</li>
+    <li><strong>Supervisor harassment, no tangible action:</strong> Employer can assert Faragher/Ellerth defense — must prove (a) it exercised reasonable care to prevent harassment, and (b) the plaintiff unreasonably failed to use preventive/corrective opportunities. If established, employer avoids liability.</li>
+    <li><strong>Coworker harassment:</strong> Employer liable only if it knew or should have known and failed to take prompt corrective action. Notice (through internal complaint or obvious manifestation) is required.</li>
+  </ul>
+
+  <h2>Learn More</h2>
+  <ul>
+    <li><a href="/guides/how-hostile-work-environment-claims-work">How hostile work environment claims work</a></li>
+    <li><a href="/guides/types-of-workplace-harassment">Types of workplace harassment</a></li>
+    <li><a href="/guides/what-to-do-after-workplace-harassment">What to do after workplace harassment</a></li>
+    <li><a href="/guides/hostile-work-misconceptions">Common misconceptions</a></li>
+    <li><a href="/case-types">Case types overview</a></li>
+    <li><a href="/methodology">Calculator methodology</a></li>
+    <li><a href="/faq">Frequently asked questions</a></li>
+  </ul>
+
   <script>
     document.getElementById('calc').addEventListener('submit', e => {
       e.preventDefault();

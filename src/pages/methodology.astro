@@ -1,12 +1,54 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Methodology | hostileworkcalc.com';
-const description = 'How the hostile work environment damages calculator works: Title VII caps, severity tiers, and economic damages.';
+const description = 'How the hostile work environment damages calculator models Title VII caps, severity tiers, economic damages, and constructive discharge — step by step.';
 ---
 <BaseLayout title={title} description={description}>
   <h1>Methodology</h1>
-  <p><em>Reviewed by Riley Chen (RC), Employment &amp; Civil Rights Practice Lead. Updated May 2026.</em></p>
-  <h2>Title VII compensatory/punitive caps</h2><p>42 U.S.C. § 1981a caps combined compensatory + punitive damages: $50K (15–100 employees), $100K (101–200), $200K (201–500), $300K (500+). The calculator applies these caps to the non-economic component. Back pay and front pay are equitable remedies not subject to the caps.</p>
-  <h2>Severity tiers</h2><p>Severe (single egregious incident): 70% of cap. Pervasive (ongoing pattern): 50% of cap. Moderate (recurring but less extreme): 25% of cap. These reflect published research on Title VII jury verdicts by severity category.</p>
-  <h2>Economic damages</h2><p>Back pay: salary/12 × months lost. Front pay: 50% of annual salary for constructive discharge cases. Both added to capped non-economic damages for total estimate.</p>
+  <p><em>Reviewed by Dex Harmon (DH), Editor-in-Chief &mdash; Employment & Civil Rights Harassment Practice. Updated May 2026.</em></p>
+
+  <p>This page explains how the hostile work environment damages calculator generates its estimates. Every input variable, every formula, and every assumption is disclosed here. Hostile work environment damages are driven primarily by Title VII&rsquo;s employer-size caps on compensatory and punitive damages — understanding how those caps interact with severity tiers and economic damages is essential for interpreting what the calculator produces.</p>
+
+  <h2>Step 1: Identifying the Controlling Statute</h2>
+  <p>The calculator handles hostile work environment claims under four federal frameworks. The controlling statute determines what damages are available and what caps apply:</p>
+  <ul>
+    <li><strong>Title VII (sex, race, religion, national origin):</strong> Compensatory and punitive damages capped by employer size under 42 U.S.C. &sect; 1981a(b)(3). Back pay and front pay are equitable remedies, not subject to the cap. Attorney fees are mandatory for prevailing plaintiffs.</li>
+    <li><strong>ADA (disability):</strong> Same cap structure as Title VII, applied to claims under the Americans with Disabilities Act. Compensatory and punitive combined capped by employer size.</li>
+    <li><strong>ADEA (age 40+):</strong> Different structure — no compensatory or punitive cap in the same form. ADEA provides for liquidated damages equal to the amount of back pay owed if the employer&rsquo;s violation was willful. The calculator uses the ADEA liquidated damages framework for age-based harassment claims.</li>
+    <li><strong>State law:</strong> Many states have higher caps or no caps on compensatory and punitive damages for harassment claims. California, for example, has no cap equivalent to Title VII&rsquo;s &sect; 1981a limits. The calculator does not model state law variations — it uses the federal framework as a floor estimate.</li>
+  </ul>
+
+  <h2>Step 2: Title VII Compensatory and Punitive Caps</h2>
+  <p>The employer-size caps under 42 U.S.C. &sect; 1981a(b)(3) apply to the combined compensatory-plus-punitive total:</p>
+  <ul>
+    <li>15&ndash;100 employees: $50,000 cap</li>
+    <li>101&ndash;200 employees: $100,000 cap</li>
+    <li>201&ndash;500 employees: $200,000 cap</li>
+    <li>500+ employees: $300,000 cap</li>
+  </ul>
+  <p>These caps apply per claim, not per plaintiff — in class or collective actions, each named plaintiff can receive up to the applicable cap. Back pay and front pay are equitable remedies ordered by the court and are not subject to these caps. This is why economic damages (back pay and front pay for constructive discharge cases) are modeled separately and added to the capped non-economic component.</p>
+
+  <h2>Step 3: Severity Tiers</h2>
+  <p>The calculator applies three severity tiers to model the likely range of compensatory and punitive awards as a fraction of the applicable cap:</p>
+  <ul>
+    <li><strong>Severe (70% of cap):</strong> A single incident of extreme severity — sexual assault, physical attack with discriminatory motive, a particularly egregious single slur from a supervisor in a context that unambiguously affects working conditions. Courts have upheld large awards for single severe incidents when the conduct was extreme and the impact on the plaintiff was serious and documented. For the largest employer tier ($300,000 cap), 70% represents a $210,000 award — consistent with outcomes in cases with strong egregious-conduct facts.</li>
+    <li><strong>Pervasive (50% of cap):</strong> An ongoing pattern over months or years. Systematic hostile treatment based on a protected characteristic, documented through multiple incidents, witnesses, or internal complaints that were ignored. This reflects the most common pattern in litigated hostile work environment cases. Fifty percent of the $300,000 cap equals $150,000 — a result consistent with published verdict and settlement data for well-documented pervasive harassment cases that settle before trial.</li>
+    <li><strong>Moderate (25% of cap):</strong> Recurring offensive conduct that is more than isolated incidents but less than systematic pervasive harassment. Comments, exclusionary treatment, and demeaning behavior that, in aggregate, creates a hostile environment but may not generate the emotional distress testimony and documentation needed to push awards toward the cap. Twenty-five percent of the $300,000 cap equals $75,000.</li>
+  </ul>
+
+  <h2>Step 4: Economic Damages (Constructive Discharge)</h2>
+  <p>If the hostile work environment was severe enough to constitute constructive discharge — conditions so intolerable that a reasonable employee would feel compelled to resign — economic damages (back pay and front pay) are added to the non-economic component:</p>
+  <ul>
+    <li><strong>Back pay:</strong> (Annual salary ÷ 12) × months of lost employment. Calculated from the date of separation through the estimated judgment or settlement date.</li>
+    <li><strong>Front pay:</strong> 50% of annual salary, applied as a single-year proxy for the present value of future earnings lost. Front pay is discretionary and awarded in lieu of reinstatement when reinstatement is impractical. Courts have awarded front pay ranging from zero (when reinstatement is ordered) to multiple years of salary (when the employee&rsquo;s career prospects are significantly impaired). The 50% proxy is a conservative midpoint estimate.</li>
+  </ul>
+  <p>For cases where the plaintiff remains employed (or voluntarily left without constructive discharge), economic damages are zero and the estimate reflects only the non-economic component.</p>
+
+  <h2>Step 5: Output Range</h2>
+  <p>The calculator outputs a low-to-high range by applying a band of 50% (low end) to 130% (high end) around the point estimate. This reflects the variability in jury awards and judicial discretion in front pay and emotional distress awards. Title VII jury verdicts for hostile work environment claims show wide variance even within similar severity categories, driven by the quality of documentary evidence, the credibility of emotional distress testimony, the jurors&rsquo; assessment of employer culpability, and the jurisdiction&rsquo;s verdict history.</p>
+
+  <h2>What the Calculator Does Not Model</h2>
+  <p>The calculator does not estimate: attorney fees (which are separately recoverable and often substantial); emotional distress awards in cases supported by medical or psychological expert testimony (which can significantly affect outcomes above the floor estimates); state law claims that may have higher or uncapped damages (particularly relevant in California, New York, New Jersey, and other high-protection states); ADEA liquidated damages for willful violations; punitive damages in cases involving egregious employer misconduct that significantly exceeded the cap (which courts have upheld in some cases despite the statutory limit); or the impact of the Faragher/Ellerth defense that may reduce employer liability when the employer had effective anti-harassment policies that the plaintiff unreasonably failed to use.</p>
+
+  <p>Return to the <a href="/">calculator</a> or see the <a href="/guides/how-hostile-work-environment-claims-work">how hostile work environment claims work guide</a>.</p>
 </BaseLayout>
