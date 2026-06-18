@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadCapture from '../components/LeadCapture.astro';
 const title = 'Hostile Work Environment Damages Calculator | hostileworkcalc.com';
 const description = 'Estimate potential damages for a hostile work environment claim under Title VII, ADA, ADEA, or state law — compensatory and punitive caps, back pay, and constructive discharge. Free, informational.';
 ---
@@ -42,7 +43,10 @@ const description = 'Estimate potential damages for a hostile work environment c
     <input id="months-lost" type="number" value="0" min="0" max="60" />
     <button type="submit">Estimate damages</button>
   </form>
-  <p id="result" aria-live="polite"></p>
+  
+
+  <LeadCapture caseType="hostile_workplace" caseTypeLabel="Hostile Work Environment" />
+<p id="result" aria-live="polite"></p>
 
   <h2>How Hostile Work Environment Damages Are Calculated</h2>
   <p>Title VII, ADA, and ADEA hostile work environment damages each follow a specific statutory framework. Understanding how those frameworks work — what is capped, what is not, and why employer size matters — is essential to interpreting the calculator&rsquo;s output.</p>
@@ -73,13 +77,13 @@ const description = 'Estimate potential damages for a hostile work environment c
 
   <h2>Learn More</h2>
   <ul>
-    <li><a href="/guides/how-hostile-work-environment-claims-work">How hostile work environment claims work</a></li>
-    <li><a href="/guides/types-of-workplace-harassment">Types of workplace harassment</a></li>
-    <li><a href="/guides/what-to-do-after-workplace-harassment">What to do after workplace harassment</a></li>
-    <li><a href="/guides/hostile-work-misconceptions">Common misconceptions</a></li>
-    <li><a href="/case-types">Case types overview</a></li>
-    <li><a href="/methodology">Calculator methodology</a></li>
-    <li><a href="/faq">Frequently asked questions</a></li>
+    <li><a href="/guides/how-hostile-work-environment-claims-work/">How hostile work environment claims work</a></li>
+    <li><a href="/guides/types-of-workplace-harassment/">Types of workplace harassment</a></li>
+    <li><a href="/guides/what-to-do-after-workplace-harassment/">What to do after workplace harassment</a></li>
+    <li><a href="/guides/hostile-work-misconceptions/">Common misconceptions</a></li>
+    <li><a href="/case-types/">Case types overview</a></li>
+    <li><a href="/methodology/">Calculator methodology</a></li>
+    <li><a href="/faq/">Frequently asked questions</a></li>
   </ul>
 
   <script>
