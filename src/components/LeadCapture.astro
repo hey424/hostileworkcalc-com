@@ -70,6 +70,11 @@ const LEAD_INTAKE_ENDPOINT = 'https://leads-intake.hey-287.workers.dev/intake';
     </div>
 
     <div class="lead-capture__field">
+      <label for="lc_phone">Phone *</label>
+      <input type="tel" id="lc_phone" name="phone" required inputmode="tel" autocomplete="tel" pattern="[0-9()+\-.\s]{10,}" maxlength="20" placeholder="(310) 555-1234" />
+    </div>
+
+    <div class="lead-capture__field">
       <label for="lc_zip">ZIP code *</label>
       <input type="text" id="lc_zip" name="zip" required pattern="[0-9]{5}" maxlength="5" inputmode="numeric" autocomplete="postal-code" placeholder="90210" />
     </div>
@@ -88,10 +93,12 @@ const LEAD_INTAKE_ENDPOINT = 'https://leads-intake.hey-287.workers.dev/intake';
       <label class="lead-capture__consent-label">
         <input type="checkbox" id="lc_consent" name="consent" required />
         <span id="lc_consent_text">
-          By clicking "Get my case review", I agree to be contacted by The Click Lab Agency LLC and its partner attorneys by email at the email address I provided. Consent is not a condition of service. I confirm I am 18 or older, a US resident, and the information provided is true.
+          By checking this box and submitting, I consent to be contacted by phone, text, and email by The Click Lab Agency LLC and one or more attorneys or their agents about my potential claim, including via automated dialing technology, at the number provided. Consent is not a condition of any purchase. Message and data rates may apply. I confirm I am 18 or older, a US resident, and the information provided is true. To opt out of future contact, email hey@theclicklab.agency or visit https://theclicklab.agency/optout.
         </span>
       </label>
     </div>
+
+    <p class="lead-capture__validation" role="alert" aria-live="assertive" hidden></p>
 
     <button type="submit" class="lead-capture__submit">Get my free case review &rarr;</button>
 
@@ -123,6 +130,33 @@ const LEAD_INTAKE_ENDPOINT = 'https://leads-intake.hey-287.workers.dev/intake';
           // Silent drop — looks successful but goes nowhere
           formEl.hidden = true;
           (formEl.parentElement?.querySelector('.lead-capture__success') as HTMLElement | null)?.removeAttribute('hidden');
+          return;
+        }
+
+        // Client-side gate — phone + consent are mandatory. The form carries
+        // `novalidate`, so native `required` attributes are NOT enforced; the
+        // Worker is the hard gate, but block here for a clear inline message.
+        const failValidation = (msg: string, focusEl: HTMLElement | null) => {
+          const el = formEl.querySelector('.lead-capture__validation') as HTMLElement | null;
+          if (el) { el.textContent = msg; el.hidden = false; }
+          focusEl?.focus();
+        };
+        const clearValidation = () => {
+          const el = formEl.querySelector('.lead-capture__validation') as HTMLElement | null;
+          if (el) { el.textContent = ''; el.hidden = true; }
+        };
+        clearValidation();
+
+        const phoneEl = formEl.querySelector('input[name="phone"]') as HTMLInputElement | null;
+        const phoneDigits = (phoneEl?.value || '').replace(/\D/g, '');
+        if (phoneDigits.length < 10 || phoneDigits.length > 11) {
+          failValidation('Please enter a valid phone number (at least 10 digits) so an attorney can reach you.', phoneEl);
+          return;
+        }
+
+        const consentEl = formEl.querySelector('input[name="consent"]') as HTMLInputElement | null;
+        if (!consentEl || !consentEl.checked) {
+          failValidation('Please check the consent box to continue.', consentEl);
           return;
         }
 
@@ -268,6 +302,13 @@ const LEAD_INTAKE_ENDPOINT = 'https://leads-intake.hey-287.workers.dev/intake';
     width: auto;
     flex-shrink: 0;
     margin-top: 0.2rem;
+  }
+  .lead-capture__validation {
+    color: #b91c1c;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0;
+    line-height: 1.4;
   }
   .lead-capture__submit {
     width: 100%;
